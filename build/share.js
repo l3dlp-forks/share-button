@@ -54,7 +54,7 @@ $.fn.share = function(opts) {
     if (!$("meta[name='sharer" + config.selector + "']").length) {
       $('head').append(getStyles(config)).append("<meta name='sharer" + config.selector + "'>");
     }
-    $(this).append("<div class='social " + config.flyout + "'><ul><li class='icon icon-twitter data-network='twitter'></li><li class='icon icon-facebook' data-network='facebook'></li><li class='icon icon-google-plus' data-network='gplus'></li></ul></div>");
+    $(this).append("<div class='social " + config.flyout + "'><ul><li class='icon icon-twitter' data-network='twitter'></li><li class='icon icon-facebook' data-network='facebook'></li><li class='icon icon-google-plus' data-network='gplus'></li></ul></div>");
     if (!window.FB && config.app_id && ($('#fb-root').length === 0)) {
       protocol = ['http', 'https'].indexOf(window.location.href.split(':')[0]) === -1 ? 'https://' : '//';
       $body.append("<div id='fb-root'></div><script>(function(a,b,c){var d,e=a.getElementsByTagName(b)[0];a.getElementById(c)||(d=a.createElement(b),d.id=c,d.src='" + protocol + "connect.facebook.net/en_US/all.js#xfbml=1&appId=" + config.app_id + "',e.parentNode.insertBefore(d,e))})(document,'script','facebook-jssdk');</script>");
@@ -80,6 +80,7 @@ $.fn.share = function(opts) {
     click_link = function() {
       var link, popup;
       link = paths[$(this).data('network')];
+      console.log(link);
       if (($(this).data('network') === 'facebook') && config.app_id) {
         if (!window.FB) {
           console.log("The Facebook JS SDK hasn't loaded yet.");
